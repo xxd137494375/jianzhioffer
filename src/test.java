@@ -51,7 +51,7 @@ public class test {
 
     //    }
     public static void main(String[] args) {
-
+//1
         int[] arr = {6, 3, 8, 2, 9, 1};
         System.out.println("排序前数组为：");
         for (int num : arr) {
