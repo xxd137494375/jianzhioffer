@@ -1,5 +1,5 @@
 package jianzhioffer.stackandqueue;
-import java.util.ArrayList;
+import java.util.*;
 public class ex4 {
     /*
         栈的压入、弹出序列
@@ -12,18 +12,101 @@ public class ex4 {
      */
 
 
-
+    //自己想的
     public boolean IsPopOrder(int [] pushA,int [] popA) {
-        boolean flag = false;
+        if(pushA.length==0){
+            return true;
+        }
+        //      Solution e = new Solution();
+        Stack<Integer> stack = new Stack<>();
         int num = popA[0];
         int index=0;
         for(;index<pushA.length;index++){
             if(pushA[index]==num){
                 break;
             }
+            stack.push(pushA[index]);
+        }
+        for(int i=0;i<popA.length&&!stack.isEmpty();i++){
+            if(popA[i]==stack.peek()){
+                stack.pop();
+            }
+        }
+        if(stack.isEmpty()){
+            return IsPopOrder(Remove(pushA,num),Remove(popA,num));
+        }
+        else
+        {
+            return false;
         }
 
-        return flag;
+    }
+    public int[] Remove(int [] A,int num){
+        int [] result = new int [A.length-1];
+        int i=0;
+        for (int n : A){
+            if (n!=num){
+                result[i++]=n;
+            }
+        }
+        return result;
+    }
+
+//    public boolean IsReverse(int [] A,int [] B){
+//        int len =A.length;
+//        if(len==0){
+//            return true;
+//        }
+//        Stack<Integer> stack = new Stack<>();
+//        for (int num :A){
+//            stack.push(num);
+//        }
+//        for(int i=0;i<B.length;i++){
+//            if(B[i]==stack.peek()){
+//                stack.pop();
+//            }
+//        }
+//        if(stack.isEmpty()){
+//             return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
+
+
+
+
+    public boolean IsPopOrder1(int [] pushA,int [] popA) {
+        if(pushA.length==0){
+            return false;
+        }
+        Stack<Integer> stack = new Stack<>();
+        for(int i=0,j=0;i<pushA.length;){
+            stack.push(pushA[i++]);
+            while (j<popA.length&&stack.peek()==popA[j]){
+                stack.pop();
+                j++;
+            }
+        }
+        return stack.isEmpty();
+
+    }
+
+
+
+        public static void main(String[] args) {
+        ex4 e = new ex4();
+        int[] A={1,2,3,4,5};
+
+        int [] B ={4,5,3,2,1};
+        System.out.println(e.IsPopOrder(A,B));
+//        A=e.Remove(A,4);
+//        for(int n :A){
+//            System.out.println(n);
+//        }
+
     }
 
 }
