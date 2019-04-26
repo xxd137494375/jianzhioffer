@@ -25,7 +25,7 @@ public class ex6 {
         if(str.charAt(0) == '-') s = -1;
         for(int i = (str.charAt(0) ==  '-' || str.charAt(0) == '+') ? 1 : 0; i < n; ++i){
             if(!('0' <= str.charAt(i) && str.charAt(i) <= '9')) return 0;//不是一个数字
-            result = (result << 1) + (result << 3) + (str.charAt(i) & 0xf);//res=res*10+str[i]-'0';位运算效率更高
+            result = (result << 1) + (result << 3) + (str.charAt(i)-'0');//res=res*10+str[i]-'0';位运算效率更高
             // 字符'0'到'9'的ascii值的低4个二进制位刚好就是0到9所以str[i]&0xf等于str[i]-'0'。 位运算会比乘法运算效率高那么一点点点点...
         }
         return result*s;
