@@ -3,14 +3,7 @@ package jianzhioffer.linkedlist;
 import java.util.List;
 
 public class ex3 {
-    public class ListNode {
-        int val;
-        ListNode next = null;
 
-        ListNode(int val) {
-            this.val = val;
-        }
-    }
 
     /*
      * 删除链表中的重复节点
